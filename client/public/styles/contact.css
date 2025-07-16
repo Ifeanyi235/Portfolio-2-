@@ -1,0 +1,191 @@
+#contact {
+    position: relative;
+    height: calc(100vh - var(--footer-height));
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0rem 0rem 0rem 0rem;
+    background: var(--primary-background);
+    position: sticky;
+    top: 0px;
+    z-index: 4;
+
+    >div:nth-of-type(1) {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        justify-content: center; 
+        align-items: center; 
+        
+
+        >div:nth-of-type(2) {
+            gap: 3rem;
+            z-index: 0;
+            position: absolute;
+            bottom: 0;
+            >button {
+                padding: 0.5rem 1rem;
+                margin: 1rem 0rem;
+                width: 100%;
+                background: none;
+                color: var(--font);
+            }
+        }
+
+    }
+
+    #quote {
+        background: var(--secondary-background);
+        box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        height: 60%;
+        width: 60%;
+        align-items: center;
+        padding: 3rem;
+        box-sizing: border-box;
+
+        >div:nth-of-type(1) {
+            width: 60%;
+            gap: 1rem;
+            >p:nth-of-type(1) {
+                font-size: 2rem;
+            }
+
+            >p:nth-of-type(2) {
+                font-size: 0.8rem;
+            }
+        }
+
+        >div:nth-of-type(2) {
+            flex-grow: 1;
+            justify-content: center;
+            >button {
+                padding: 0.5rem 1rem;
+                margin: 1rem 0rem;
+                width: fit-content;
+                background: var(--font-red);
+                color: var(--font);
+            }
+        }
+    }
+
+    >div:nth-of-type(2) {
+        position: absolute;
+        z-index: 0;
+        background: var(--secondary-background);
+        height: 40%;
+        width: 100%;
+        top: 0;
+    }
+}
+
+@media (max-width:1024px) {
+    #contact {
+        #quote {
+            width: 80%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #contact {
+        #quote {
+            padding: 2rem;
+            >div:nth-of-type(1) {
+                >p:nth-of-type(1) {
+                    font-size: 1.3rem;
+                }
+
+                >p:nth-of-type(2) {
+                    font-size: 0.6rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 540px) {
+    #contact {
+        #quote {
+            padding: 2rem;
+            height: fit-content;
+            width: 85%;
+            justify-content: space-between;
+            >div:nth-of-type(1) {
+                >p:nth-of-type(1) {
+                    font-size: 1rem;
+                }
+
+                >p:nth-of-type(2) {
+                    font-size: 0.5rem;
+                }
+            }
+
+            >div:nth-of-type(2) {
+                width: fit-content;
+                justify-content: flex-end;
+                >button {
+                    margin: 0rem;
+                    padding: 0.5rem 0.7rem;
+                    font-size: 0.6rem;
+                }
+            }
+        }
+
+        >div:nth-of-type(1) {
+            >div:nth-of-type(2) {
+                gap: 0rem;
+                width: 100%;
+                justify-content: space-between;
+                button {
+                    font-size: 0.7rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    #contact {
+        >div:nth-of-type(1) {
+            >div:nth-of-type(2) {
+                button {
+                    font-size: 0.6rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    #contact {
+
+        #quote {
+            margin-bottom: 1rem;
+            >div:nth-of-type(1) {
+                >p:nth-of-type(1) {
+                    font-size: 0.7rem;
+                }
+
+                >p:nth-of-type(2) {
+                    font-size: 0.3rem;
+                }
+            }
+
+            >div:nth-of-type(2) {
+                >button {
+                    font-size: 0.5rem;
+                }
+            }
+        }
+
+        >div:nth-of-type(1) {
+            >div:nth-of-type(2) {
+                button {
+                    padding: 0.5rem 0.7rem;
+                    font-size: 0.5rem;
+                }
+            }
+        }
+    }
+}

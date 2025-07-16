@@ -1,0 +1,15 @@
+#footer {
+    background: var(--secondary-background);
+    height: var(--footer-height);
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 5;
+}
+
+@media (max-width: 425px) {
+    :root {
+        --footer-height: 3rem;
+    }
+
+}

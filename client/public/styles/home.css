@@ -1,0 +1,121 @@
+#home {
+    height: 100vh;
+    padding: 3rem 2rem 0rem 2rem;
+    grid-template: auto / 1fr 1fr;
+    justify-content: start;
+    align-items: center;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0px;
+    > img {
+        width: auto;
+        height: 100%;
+        opacity: 1;
+    }
+
+    >div:nth-of-type(1) {
+        position: absolute;
+        right: 0;
+        gap: 0.5rem;
+        width: 35rem;
+
+        > h3 {
+            color: var(--font-red);
+        }
+
+        > button {
+            padding: 0.5rem 1rem;
+            margin: 1rem 0rem;
+            width: fit-content;
+            background: var(--font-red);
+            color: var(--font);
+        }
+    } 
+}
+
+@media (max-width: 1023px) {
+    #home {
+        justify-content: center;
+        >div:nth-of-type(1) {
+            right: auto;
+            left: auto;
+            text-align: center;
+            align-items: center;
+
+            p {
+                font-size: 0.7rem;
+            }
+        }
+        >img {
+            opacity: 0.2;
+        }
+
+    }
+}
+
+@media (max-width: 767px) {
+    #home {
+        padding: 3rem 2rem 0rem 2rem;
+        >img {
+            height: 90%;
+            width: auto;
+            opacity: 0.2;
+            align-self: flex-end;
+        }
+
+        >div:nth-of-type(1) {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0rem 2rem;
+        }
+
+    }
+}
+
+@media (max-width: 424px) {
+    #home {
+
+        >div:nth-of-type(1) {
+            text-align: end;
+            h3, h1 {
+                align-self: start;
+            }
+
+            p, button {
+                align-self: flex-end;
+            }
+            >h3 {
+                margin-top: 2rem;
+            }
+            >h1 {
+                margin-bottom: 11rem;
+            }
+
+            p {
+                font-size: 0.7rem;
+            }
+        }
+        >img {
+            height: 80%;
+            opacity: 0.4;
+        }
+    }
+}
+
+@media (max-width: 374px) {
+    #home {
+        > img  {
+            height: 69%;
+            opacity: 0.4;
+        }
+
+        >div:nth-of-type(1) {
+            >h3 {
+                margin-top: 2rem;
+            }
+            >h1 {
+                margin-bottom: 12rem;
+            }
+        }
+    }
+}
