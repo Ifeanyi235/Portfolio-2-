@@ -55,6 +55,7 @@ function CarouselItem({
     const controlsRef = useRef(null);
     const pausedRef = useRef(paused);
     pausedRef.current = paused;
+    const firstRowCheck = row === "first" && started;
 
 
 
@@ -98,7 +99,7 @@ function CarouselItem({
         };
     }, [
         row,
-        row === "first" && started,
+        firstRowCheck,
         prefersReducedMotion,
         firstIntroEnd,
         firstLoopFrom,
