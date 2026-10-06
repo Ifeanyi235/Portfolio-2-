@@ -5,7 +5,7 @@ import { store } from './store';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import App from "./App";
-
+import FullProject from "./FullProject";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +13,7 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/project" element={<FullProject />} />
       </Routes>
     </Router>
   </Provider>

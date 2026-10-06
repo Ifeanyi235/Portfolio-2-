@@ -1,0 +1,293 @@
+#loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--font-red);
+    font-family: "Quicksand", sans-serif;
+    background: var(--primary-background);
+    width: 100vw;
+    height: 100vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;  
+    overflow: hidden;
+
+    div{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+        >div {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            align-items: center;
+            font-size: 3.2rem;
+            color: var(--font);
+            width: fit-content;
+            h1 {
+                margin: 0px;
+            }
+
+            svg {
+                font-size: 4rem;
+                width: 6rem;
+            }
+        }
+        >h1 {
+            margin-bottom: 0.5rem;
+        }
+        >button {
+            background: var(--font-red);
+            color: var(--font);
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            margin-top: 0.2rem;
+        }
+        >button:hover {
+                scale: 1.1;
+            }
+    }
+    h1 {
+        width: fit-content;
+    }
+}
+
+#Fullproject {
+    height: 100vh;
+    align-items: center;
+    grid-template: auto 1fr/ 1fr;
+    overflow-y: auto;
+    background: var(--primary-background);
+    color: var(--font-red);
+    font-family: "Quicksand", sans-serif;
+    p, button, a  {
+        font-family: "Comic Relief", system-ui;
+        font-weight: 400;
+    }
+
+    > div:nth-of-type(2) {
+        margin-top: var(--navHeight);
+        padding: 1rem;
+        width: fit-content;
+        z-index: 2;
+    }
+
+    > div:nth-of-type(3) {
+        scrollbar-width: none;
+        -ms-overflow-style: none;  
+        position: relative;
+        padding: 0rem 1.5rem 2rem 1.5rem;
+        height: 85%;
+        grid-template: 1fr / repeat(5, 1fr);
+        grid-auto-rows: 1fr;
+        gap: 2rem;
+        overflow-y: scroll;
+        align-items: start;
+        justify-content: center;
+        align-self: start;
+        
+        h1 {
+            font-size: 1.3rem;
+        }
+        >div {
+                max-height: 500px;
+                height: 100%;
+                background: var(--secondary-background);
+                box-shadow:  var(--box-shadow-2);
+                padding: 0.4rem;
+                border-radius: 0.5rem;
+            >div {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: start;
+                text-align: start;
+                gap: 0.8rem;
+                font-size: 0.8rem;
+                padding-bottom: 1rem;
+                height: 100%;
+                /* border: 0.8rem dashed var(--primary-background); */
+                padding: 0.5rem;
+
+                >img {
+                    border-radius: 0.5rem;
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                }
+
+                >p {
+                    padding: 0.3rem;
+                    color: var(--font);
+                }
+
+                >button {
+                    background: var(--font-red);
+                    color: var(--font);
+                    padding: 0.5rem;
+                    border-radius: 0.5rem;
+                    align-self: end;
+                    margin-top: auto;
+                }
+
+                >button:hover {
+                    scale: 1.1;
+                }
+            }
+        }
+
+    }
+
+    #video-player {
+        box-sizing: border-box;
+        padding: 1rem;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: var(--primary-background);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        button {
+            padding: 0.7rem;
+            background: var(--font-red);
+            border-radius: 0.5rem;
+            color: var(--primary-background);
+            width: fit-content;
+            align-self: end;
+        }
+
+        >button:hover {
+            scale: 1.1;
+        }
+
+        video {
+            width: 100%;
+            max-width: 100%;
+            max-height: 90%;
+            flex: 1;
+            object-fit: contain;
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    #Fullproject {
+
+        >div:nth-of-type(3) {
+            grid-template: 1fr / repeat(4, 1fr);
+            grid-auto-rows: 1fr;              
+            h1 {
+                font-size: 1.1.rem;
+            }
+
+            p {
+                font-size: 1.0rem;
+            }
+
+            button {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    #loading {
+        >div {
+            >div {
+                h1 {
+                    font-size: 4rem;
+                }
+
+                svg {
+                    font-size: 3rem;
+                }
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    }
+    #Fullproject {
+        >div:nth-of-type(2) {
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        >div:nth-of-type(3) {
+            grid-template: 1fr / repeat(4, 1fr);             
+            h1 {
+                font-size: 1rem;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+
+            button {
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    #Fullproject {
+
+        >div:nth-of-type(3) {
+            grid-template: 1fr / repeat(3, 1fr);           
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    #loading {
+        >div {
+            >div {
+                h1 {
+                    font-size: 3rem;
+                }
+
+                svg {
+                    font-size: 2rem;
+                }
+            }
+            h1 {
+                font-size: 1rem;
+            }
+        }
+    }
+    #Fullproject {
+
+        >div:nth-of-type(3) {
+            grid-template: 1fr / repeat(2, 1fr);
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    #Fullproject {
+
+        >div:nth-of-type(3) {
+            grid-template: 1fr / repeat(1, 1fr);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #loading {
+        >div {
+            font-size: 1rem;
+
+            svg {
+                font-size: 3.4rem;
+            }
+        }
+    }
+}

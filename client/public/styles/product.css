@@ -4,10 +4,10 @@
     row-gap: 3rem;
     justify-items: center;
     justify-content: center;
-    padding: 6rem 0rem 3rem 0rem;
+    padding: 2rem 0rem 3rem 0rem;
     box-sizing: border-box;
     background: var(--primary-background);
-    position: sticky;
+    /* position: sticky; */
     top: 0px;
 
     >div {
@@ -19,9 +19,11 @@
             justify-content: center;
             align-items: center;
             background: var(--secondary-background);
-            box-shadow:  0px 0px 9px 0px rgba(0, 0, 0, 0.35);
+            box-shadow:  var(--box-shadow);  
         }
     }
+
+    
 
     #project-row-1 {
         svg {
@@ -53,6 +55,7 @@
     #project-cell-4 {
         background: none;
         box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.2);
+        text-align: center;
         h1 {
             font-size: 6rem;
             color: var(--font-red);
@@ -61,7 +64,7 @@
 
     #project-cell-5, #project-cell-6 {
         background: var(--primary-background);
-        grid-template: auto / 1fr;
+        grid-template: 1fr 1fr / 1fr;
         row-gap: 0.5rem;
         >div {
             gap: 0.5rem;
@@ -77,42 +80,459 @@
     }
 }
 
-@media (max-width: 768px) {
-    #product {
-        overflow-x: hidden;
+@keyframes productAnimateCell1 {
+    0%, 33% {
+        grid-column: 1;
+        grid-row: 1;
+    }
 
-        >div {
-            width: 100vh;
-            
-            padding: 0rem 2rem;
-            box-sizing: border-box;
-        }
+    34%, 66% {
+        scale: 1.1;
+        background: var(--font-red);
+        z-index: 2;
+        grid-column: 2;
+        grid-row: 1;
+    }
 
-        #project-row-1 {
-            gap: 1rem;
-            width: 520px;
-            div{
-                gap: 0.7rem;
-                p:nth-of-type(1) {
-                    font-size: 1rem;
+    67%, 99% {
+        scale: 1;
+        background: var(--secondary-background);
+        z-index: 1;
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    100% {
+        grid-column: 1;
+        grid-row: 1;
+    }
+}
+
+@keyframes productAnimateCell2 {
+
+    0%, 33% {
+        scale: 1.1;
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    34%, 66% {
+        scale: 1;
+        background: var(--secondary-background);
+        grid-column: 3;
+        grid-row: 1;
+        z-index: 1;
+    }
+
+    67%, 99% {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    100% {
+        scale: 1.1;
+        background: var(--font-red);
+        z-index: 2;
+        grid-column: 2;
+        grid-row: 1;
+    }
+}
+
+@keyframes productAnimateCell3 {
+    0%, 33% {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    34%, 66% {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    67%, 99% {
+        scale: 1.1;
+        background: var(--font-red);
+        z-index: 2;
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    100% {
+        scale: 1;
+        background: var(--secondary-background);
+        z-index: 1;
+        grid-column: 3;
+        grid-row: 1;
+    }
+}
+
+
+
+@media (max-height: 1400px) {
+    @media (max-width: 1024px) {
+        #product {
+            padding-bottom: 0rem;
+            >div {
+                box-sizing: border-box;
+                padding: 0rem 2rem;
+                width: 100%;
+                height: 80%;
+            }
+
+            #project-row-1 {
+                svg {
+                    height: 4rem;
+                }
+                div {
+                    p:nth-of-type(1) {
+                        font-size: 2rem;
+                    }
+ 
+                    p:nth-of-type(2) {
+                        font-size: 1.2rem
+                    }
+                }
+            }
+
+            #project-cell-4 {
+                h1 {
+                    font-size: 6rem;
                 }
 
-                p:nth-of-type(2), a {
-                    font-size: 0.6rem;
+                p {
+                    font-size: 2rem;
+                }
+            }
+
+            #project-cell-5, #project-cell-6 {
+                >div {
+                    h1 {
+                        font-size: 2.5rem;
+                    }
+
+                    p {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+        }
+    };
+}
+
+@media (max-height: 1200px) {
+    @media (max-width: 834px) {
+        #product {
+            #project-row-1 {
+                svg {
+                    height: 3.8rem;
+                }
+                div {
+                    p:nth-of-type(1) {
+                        font-size: 2rem;
+                    }
+
+                    p:nth-of-type(2) {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 810px) {
+        #product {
+            #project-row-1 {
+                svg {
+                    height: 3.5rem;
+                }
+                div {
+                    p:nth-of-type(1) {
+                        font-size: 1.7rem;
+                    }
+
+                    p:nth-of-type(2) {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+        
+    }
+
+    @media (max-width: 600px) {
+        #product {
+            overflow: hidden;
+            row-gap: 0rem;
+            #project-row-1 {
+                width: 800px;
+                gap: 1rem;
+                svg {
+                    height: 3.5rem;
+                }
+                div {
+                    gap: 0.7rem;
+                    p:nth-of-type(1) {
+                        font-size: 1.7rem;
+                    }
+
+                    p:nth-of-type(2) {
+                        font-size: 1rem;
+                    }
+                }
+            }
+
+            #project-cell-4 {
+                h1 {
+                    font-size: 4rem;
+                }
+
+                p {
+                    font-size: 2rem;
+                }
+            }
+
+            #project-cell-5, #project-cell-6 {
+                text-align: center;
+                overflow: hidden;
+                >div {
+                    h1 {
+                        font-size: 2rem;
+                    }
+
+                    p {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+
+            #project-row-2 {
+                gap: 0.6rem;
+                width: 100vw;
+            }
+
+            #project-cell-1 {
+                animation: productAnimateCell1
+                10s steps(1) infinite; 
+            }
+
+            #project-cell-2 {
+                animation: productAnimateCell2
+                10s steps(1) infinite; 
+            }
+
+            #project-cell-3 {
+                animation: productAnimateCell3 
+                10s steps(1) infinite; 
+            }
+
+        }
+        
+    }
+}
+
+@media (max-height: 1000px) {
+
+    @media (min-width: 500px) {
+        #product {
+
+            #project-row-1 {
+                svg {
+                    height: 2rem;
+                }
+                div {
+                    p:nth-of-type(1) {
+                        font-size: 1rem;
+                    }
+
+                    p:nth-of-type(2) {
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+
+            #project-cell-4 {
+                h1 {
+                    font-size: 2.8rem;
+                }
+
+                p {
+                    font-size: 1rem;
+                }
+            }
+
+            #project-cell-5, #project-cell-6 {
+                >div {
+                    h1 {
+                        font-size: 1.6rem;
+                    }
+
+                    p {
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        #product {
+            #project-cell-4 {
+                h1 {
+                    font-size: 3rem;
+                }
+
+                p  {
+                    font-size: 1.2rem;
+                }
+            }
+
+            #project-cell-5, #project-cell-6 {
+                >div {
+                    h1 {
+                        font-size: 1.8rem;
+                    }
+
+                    p {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 430px) {
+        #product {
+
+            #project-row-1 {
+                align-self: center;
+                svg {
+                    height: 3.5rem;
+                }
+
+                div {
+                    p:nth-of-type(1) {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+            #project-row-2 {
+                grid-template: auto/ 1fr;
+                height: 100%;
+            }
+
+            #project-cell-5, #project-cell-6 {
+                grid-template: 1fr / 1fr 1fr;
+                gap: 0.1rem;
+            }
+        }
+        
+    }
+
+    @media (max-width: 390px) {
+        #product {
+            #project-row-1 {
+                height: 80%;
+                svg {
+                    height: 3rem;
+                }
+
+                div {
+                    p:nth-of-type(1) {
+                        font-size: 1.5rem;
+                    }
+
+                    p:nth-of-type(2) {
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+
+            #project-row-2 {
+                padding: 0rem 1rem;
+            }
+        }
+        
+    }
+}
+
+@media (max-height: 800px) {
+    @media (max-width: 430px) {
+        #product {
+            grid-template: auto / 1fr;
+            #project-row-1 {
+                height: 60%;
+                svg {
+                    height: 2.8rem;
+                }
+
+                div {
+                    p:nth-of-type(1) {
+                        font-size: 1.15rem;
+                    }
+
+                    p:nth-of-type(2) {
+                        font-size: 0.75rem;
+                    }
+                }
+            }
+
+            #project-cell-4 {
+                h1 {
+                    font-size: 2.65rem;
+                }
+
+                p {
+                    font-size: 1.15rem;
+                }
+            }
+
+            #project-cell-5, #project-cell-6 {
+                >div {
+                    h1 {
+                        font-size: 1.05rem;
+                    }
+
+                    p {
+                        font-size: 0.75rem;
+                    }
+                }
+            }            
+        }
+    }    
+}
+
+@media (max-width: 370px) {
+    #product {
+        #project-row-1 {
+            width: 700px;
+            svg {
+                height: 3rem;
+            }
+            div {
+                p:nth-of-type(1) {
+                    font-size: 1.1rem;
+                }
+
+                p:nth-of-type(2) {
+                    font-size: 0.7rem;
                 }
             }
         }
 
         #project-cell-4 {
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+
+            p {
+                font-size: 1.1rem;
             }
         }
 
         #project-cell-5, #project-cell-6 {
             >div {
                 h1 {
-                    font-size: 1.5rem;
+                    font-size: 1rem;
                 }
 
                 p {
@@ -120,76 +540,5 @@
                 }
             }
         }
-
-        #project-row-2 {
-            width: 90%;
-        }
     }
-
-    #project-cell-2 {
-        transform: scale(1.1);
-    }
-
-}
-
-@media (max-width: 425px) {
-    #product {
-
-        #project-row-1 {
-            div{
-                gap: 0.7rem;
-            }
-
-        }
-
-        #project-cell-4 {
-            h1 {
-                font-size: 2.5rem;
-            }
-        }
-
-        #project-cell-5, #project-cell-6 {
-            >div {
-                h1 {
-                    font-size: 1rem;
-                }
-
-                p {
-                    font-size: 0.6rem;
-                }
-            }
-        }
-
-        #project-row-2 {
-            width: 80%;
-        }
-    }
-
-}
-
-@media (max-width: 375px) {
-    #product {
-        #project-cell-4 {
-            p {
-                font-size: 0.7rem;
-            }
-        }
-
-        #project-cell-5, #project-cell-6 {
-            >div {
-                h1 {
-                    font-size: 1rem;
-                }
-
-                p {
-                    font-size: 0.6rem;
-                }
-            }
-        }
-
-        #project-row-2 {
-            width: 70%;
-        }
-    }
-
 }

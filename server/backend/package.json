@@ -1,0 +1,19 @@
+{
+  "name": "google-drive-gallery-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "check": "node --check server.js && node --check routes/driveRoutes.js && node --check controllers/driveController.js && node --check services/googleDriveService.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "googleapis": "^144.0.0",
+    "helmet": "^8.0.0",
+    "morgan": "^1.10.0"
+  }
+}
