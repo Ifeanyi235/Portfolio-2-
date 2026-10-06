@@ -55,7 +55,6 @@ function CarouselItem({
     const controlsRef = useRef(null);
     const pausedRef = useRef(paused);
     pausedRef.current = paused;
-    const firstRowCheck = row === "first" && started;
 
 
 
@@ -65,20 +64,10 @@ function CarouselItem({
         let keyframes;
         let options;
 
-        if (row === "first") {
-            if ( !started) {
-                // Intro sweep: runs once.
-                keyframes = [0, firstIntroEnd];
-                options = { ease: "linear", duration: 15 }; 
-            } else {
-                options = {
-                    ease: "linear",
-                    duration: 30,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                };
-                keyframes = [firstLoopFrom, firstLoopTo];
-            }
+        if (!started) {
+            // Intro sweep: runs once.
+            keyframes = [0, firstIntroEnd];
+            options = { ease: "linear", duration: 15 }; 
         } else {
             options = {
                 ease: "linear",
@@ -86,7 +75,7 @@ function CarouselItem({
                 repeat: Infinity,
                 repeatType: "loop",
             };
-            keyframes = [secondStart, 0];
+            keyframes = [firstLoopFrom, firstLoopTo];
         }
 
         const controls = animate(x, keyframes, options);
@@ -98,12 +87,100 @@ function CarouselItem({
             controlsRef.current = null;
         };
     }, [
-        row,
-        firstRowCheck,
+        started,
         prefersReducedMotion,
         firstIntroEnd,
         firstLoopFrom,
         firstLoopTo,
+        x,
+    ]);
+
+    useEffect(() => {
+        const controls = controlsRef.current;
+        if (!controls) return;
+
+        if (paused) controls.pause();
+        else controls.play();
+    }, [paused]);
+
+    return (
+        <motion.div
+            style={{ x }}
+            viewport={{ once: false }}
+            onViewportLeave={() => {
+                if (isLeader && !started) onFirstItemLeave();
+            }}
+            id=""
+            className="flx flx-drc"
+        >
+            <div>
+                <img
+                    src={folder.image ? `${API_URL}${folder.image.url}` : undefined}
+                    alt={folder.title}
+                />
+                <h1>{folder.title}</h1>
+                <p>{folder.description}</p>
+                <button
+                    type="button"
+                    onClick={() =>
+                        onPlayVideo(`${API_URL}${folder.video.shareUrl}`)
+                    }
+                >
+                    Play Video
+                </button>
+            </div>
+        </motion.div>
+    );
+}
+
+function CarouselItem1({
+    folder,
+    row,
+    windowWidth,
+    started,
+    paused,
+    onFirstItemLeave,
+    onPlayVideo,
+    isLeader,
+}) {
+    const wide = windowWidth > 1000;
+    const prefersReducedMotion = useReducedMotion();
+
+    // Same ranges as the original code.
+    const secondStart = wide ? -((windowWidth * 2) + 80) : ((-936 * 2) - 48);
+
+    const x = useMotionValue(row === "first" ? 0 : secondStart);
+    const controlsRef = useRef(null);
+    const pausedRef = useRef(paused);
+    pausedRef.current = paused;
+
+
+
+    useEffect(() => {
+        if (prefersReducedMotion) return undefined;
+
+        let keyframes;
+        let options;
+
+        options = {
+            ease: "linear",
+            duration: 30,
+            repeat: Infinity,
+            repeatType: "loop",
+        };
+        keyframes = [secondStart, 0];
+        
+
+        const controls = animate(x, keyframes, options);
+        if (pausedRef.current) controls.pause();
+        controlsRef.current = controls;
+
+        return () => {
+            controls.stop();
+            controlsRef.current = null;
+        };
+    }, [
+        prefersReducedMotion,
         secondStart,
         x,
     ]);
@@ -246,7 +323,7 @@ const Project = forwardRef((props, ref) => {
                     onBlurCapture={handleBlurCapture}
                 >
                     {secondFolders.map((folder, index) => (
-                        <CarouselItem
+                        <CarouselItem1
                             key={getFolderKey(folder, index)}
                             folder={folder}
                             row="second"

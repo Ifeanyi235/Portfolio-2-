@@ -1,5 +1,4 @@
 import React, {forwardRef} from "react";
-import {motion} from "framer-motion"
 
 const Product = forwardRef((props, ref) => {
     return (

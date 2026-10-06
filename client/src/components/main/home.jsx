@@ -4,7 +4,7 @@ const Home = forwardRef((props, ref) => {
     return (
         <div id="home" className="flx " ref={ref}>
             
-            <img src="\images\image 5.png"></img>
+            <img src="\images\image 5.png" alt="Profile Image"></img>
             
             <div className="flx flx-drc">
                 <div id="intro">

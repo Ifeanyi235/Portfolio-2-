@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect, forwardRef} from "react";
+import React, {useState, useEffect, forwardRef} from "react";
 import {easeInOut, motion} from "framer-motion";
 import NavBar from "./components/main/navbar";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +18,6 @@ async function getJson(path) {
 }
 
 const FullProject = forwardRef((props, ref) => {
-
-    const containerRef = useRef(null);
 
     const [folders, setFolders] = useState([]);
     const [count, setCount] = useState(null);
