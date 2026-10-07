@@ -14,7 +14,7 @@ app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://portfolio-2-s3db.vercel.app/", // your deployed frontend
+    "https://portfolio-2-s3db.vercel.app", // your deployed frontend
   ],
 }));
 app.use(express.json({ limit: '32kb' }));
