@@ -7,7 +7,8 @@ import {
 } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+// const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+const API_URL = process.env.REACT_APP_API_URL;
 
 async function getJson(path, signal) {
     const response = await fetch(`${API_URL}${path}`, { signal });

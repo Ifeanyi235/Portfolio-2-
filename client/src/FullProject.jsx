@@ -117,7 +117,7 @@ const FullProject = forwardRef((props, ref) => {
         
         <div id="Fullproject" className="grd">
             <NavBar pages={pages} scrollToNext={scrollToNext} />
-            <motion.div initial={{x: (windowWidth / 2) - 80, y: (windowHeight / 2) - 64}} animate={{x: 0, y: 0}} transition={{duration: 1.2, ease: "easeInOut"}}>
+            <motion.div initial={{x: (windowWidth / 2) - 80, y: (windowHeight / 2) - 48}} animate={{x: 0, y: 0}} transition={{duration: 1.2, ease: "easeInOut"}}>
                 <h1>My Projects</h1>
             </motion.div>
 

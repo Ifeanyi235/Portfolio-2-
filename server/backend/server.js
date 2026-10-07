@@ -10,7 +10,13 @@ const app = express();
 const origins = (process.env.CLIENT_ORIGINS || '').split(',').map((value) => value.trim()).filter(Boolean);
 app.disable('x-powered-by');
 app.use(helmet({ crossOriginResourcePolicy: false }));
-app.use(cors({ origin: origins.length ? origins : false }));
+// app.use(cors({ origin: origins.length ? origins : false }));
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://portfolio-2-s3db.vercel.app/", // your deployed frontend
+  ],
+}));
 app.use(express.json({ limit: '32kb' }));
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.get('/health', (req, res) => res.json({ ok: true }));
