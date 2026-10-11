@@ -43,14 +43,19 @@ function CarouselItem({
     onPlayVideo,
     isLeader,
 }) {
-    const wide = windowWidth > 1000;
+    const slim = windowWidth > 1000;
     const prefersReducedMotion = useReducedMotion();
 
     // Same ranges as the original code.
-    const firstIntroEnd = wide ? windowWidth - 75 : 935;
-    const firstLoopFrom = wide ? -windowWidth : -984;
-    const firstLoopTo = wide ? windowWidth - 80 : 936;
-    const secondStart = wide ? -((windowWidth * 2) + 80) : ((-936 * 2) - 48);
+    // const firstIntroEnd = wide ? windowWidth - 0 : 935;
+    // const firstLoopFrom = wide ? -windowWidth : -984;
+    // const firstLoopTo = wide ? windowWidth - 0 : 936;
+    // const secondStart = wide ? -((windowWidth * 2) + 0) : ((-936 * 2) - 48);
+
+    const firstIntroEnd = windowWidth;
+    const firstLoopFrom = -windowWidth;
+    const firstLoopTo = windowWidth;
+    const secondStart = -(windowWidth * 2);
 
     const x = useMotionValue(row === "first" ? 0 : secondStart);
     const controlsRef = useRef(null);
@@ -65,7 +70,7 @@ function CarouselItem({
         let keyframes;
         let options;
 
-        if (!started) {
+        if (slim && !started) {
             // Intro sweep: runs once.
             keyframes = [0, firstIntroEnd];
             options = { ease: "linear", duration: 15 }; 
@@ -94,6 +99,7 @@ function CarouselItem({
         firstLoopFrom,
         firstLoopTo,
         x,
+        slim
     ]);
 
     useEffect(() => {
@@ -107,12 +113,13 @@ function CarouselItem({
     return (
         <motion.div
             style={{ x }}
-            viewport={{ once: false }}
+            viewport={{ once: false, margin: "0px -32.5px 0px 0px" }}
             onViewportLeave={() => {
-                if (isLeader && !started) onFirstItemLeave();
+                slim && isLeader && !started && onFirstItemLeave();
+                
             }}
             id=""
-            className="flx flx-drc"
+            className="flx flx-drc container"
         >
             <div>
                 <img
@@ -136,7 +143,6 @@ function CarouselItem({
 
 function CarouselItem1({
     folder,
-    row,
     windowWidth,
     started,
     paused,
@@ -144,13 +150,16 @@ function CarouselItem1({
     onPlayVideo,
     isLeader,
 }) {
-    const wide = windowWidth > 1000;
     const prefersReducedMotion = useReducedMotion();
 
     // Same ranges as the original code.
-    const secondStart = wide ? -((windowWidth * 2) + 80) : ((-936 * 2) - 48);
+    // const secondStart = wide ? -((windowWidth * 2) ) : ((-936 * 2) - 48);
 
-    const x = useMotionValue(row === "first" ? 0 : secondStart);
+    const secondStart = -(windowWidth * 2);
+    const slim = windowWidth > 1000;
+
+
+    const x = useMotionValue(secondStart);
     const controlsRef = useRef(null);
     const pausedRef = useRef(paused);
     pausedRef.current = paused;
@@ -168,6 +177,7 @@ function CarouselItem1({
             duration: 30,
             repeat: Infinity,
             repeatType: "loop",
+            delay: !slim && 15
         };
         keyframes = [secondStart, 0];
         
@@ -184,6 +194,7 @@ function CarouselItem1({
         prefersReducedMotion,
         secondStart,
         x,
+        slim
     ]);
 
     useEffect(() => {
@@ -224,20 +235,95 @@ function CarouselItem1({
     );
 }
 
+const contents = [
+    {
+        image: "https://res.cloudinary.com/dxj0d1v3g/image/upload/v1690911685/Portfolio%201/portfolio-1_1_2x_1_2x.png",
+        title: "Portfolio 1",
+        description: "This is my first portfolio project.",
+    }, {
+        image: "https://res.cloudinary.com/dxj0d1v3g/image/upload/v1690911685/Portfolio%201/portfolio-2_1_2x_1_2x.png",
+        title: "Portfolio 2",
+        description: "This is my second portfolio project.",
+    }, {
+        image: "https://res.cloudinary.com/dxj0d1v3g/image/upload/v1690911685/Portfolio%201/portfolio-3_1_2x_1_2x.png", 
+        title: "Portfolio 3",
+        description: "This is my third portfolio project.",
+    }, {
+        image: "https://res.cloudinary.com/dxj0d1v3g/image/upload/v1690911685/Portfolio%201/portfolio-4_1_2x_1_2x.png",
+        title: "Portfolio 4",
+        description: "This is my fourth portfolio project.",
+    }, {
+        image: "https://res.cloudinary.com/dxj0d1v3g/image/upload/v1690911685/Portfolio%201/portfolio-5_1_2x_1_2x.png",
+        title: "Portfolio 5",
+        description: "This is my fifth portfolio project.",
+    }
+]
+
+
 const Project = forwardRef((props, ref) => {
     const [folders, setFolders] = useState([]);
     const [playingVideo, setPlayingVideo] = useState(null);
     const [started, setStarted] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const windowHeight= window.innerHeight;
+    const [columns, setColumns] = useState(2);
+    const elementRef = useRef(null);
+    const containerRef = useRef(null);
 
     const navigate = useNavigate();
 
     // Keep the width-based ranges in sync with the window.
+    // useEffect(() => {
+    //     const onResize = () => setWindowWidth(window.innerWidth);
+    //     window.addEventListener("resize", onResize);
+    //     return () => window.removeEventListener("resize", onResize);
+    // }, []);
+
     useEffect(() => {
-        const onResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener("resize", onResize);
-        return () => window.removeEventListener("resize", onResize);
+        const element = elementRef.current;
+        if (!element) return;
+
+        const width = element.getBoundingClientRect().width;
+        setWindowWidth(width);
+
+        if (windowHeight < 1401) {
+            if (windowWidth < 801) {
+                setColumns(3);
+                // console.log("windowWidth < 801");
+            } else if (windowWidth < 1001) {
+                setColumns(4);
+            }
+        }
+        if (windowHeight < 1001) {
+            if (windowWidth < 499) {
+                setColumns(5);
+            } else if (windowWidth > 1199) {
+                setColumns(5);
+            } else if (windowWidth > 499) {
+                setColumns(4);
+            }
+        }
+        if (windowHeight < 801) {
+            if (windowWidth < 367) {
+                setColumns(4);
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        const container = elementRef.current;
+
+        if (!container) return;
+
+        const styles = getComputedStyle(container);
+
+        const columns = styles.gridTemplateColumns
+            .split(" ")
+            .length;
+
+        console.log("Number of columns:", columns);
+        // setColumns(columns);
     }, []);
 
     // Load the gallery; abort if the component unmounts mid-request.
@@ -275,8 +361,8 @@ const Project = forwardRef((props, ref) => {
         return () => window.removeEventListener("keydown", onKeyDown);
     }, [playingVideo]);
 
-    const firstFolders = folders.slice(0, 5);
-    const secondFolders = folders.slice(0, 5);
+    const firstFolders = folders.slice(0, columns);
+    const secondFolders = folders.slice(0, columns);
 
     // Carousels also hold still while a video is playing.
     const paused = isHovered || Boolean(playingVideo);
@@ -300,6 +386,7 @@ const Project = forwardRef((props, ref) => {
                     onMouseLeave={resumeBothCarousels}
                     onFocusCapture={pauseBothCarousels}
                     onBlurCapture={handleBlurCapture}
+                    ref={elementRef}
                 >
                     {firstFolders.map((folder, index) => (
                         <CarouselItem

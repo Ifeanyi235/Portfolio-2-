@@ -14,6 +14,7 @@
     }  
 }
 
+
 #loading {
     display: flex;
     justify-content: center;
@@ -46,7 +47,7 @@
             }
 
             svg {
-                font-size: 9rem;
+                font-size: 7rem;
             }
         }
         >h1 {
@@ -77,6 +78,10 @@
     background: var(--primary-background);
     color: var(--font-red);
     font-family: "Quicksand", sans-serif;
+    .hidden {
+        display: none;
+    }
+
     p, button, a  {
         font-family: "Comic Relief", system-ui;
         font-weight: 400;
@@ -165,6 +170,7 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        overflow: hidden;
 
         button {
             padding: 0.7rem;
@@ -297,7 +303,7 @@
 @media (max-width: 768px) {
     #loading {
         >div {
-            font-size: 1rem;
+            font-size: 1.5rem;
 
             svg {
                 font-size: 3.4rem;

@@ -130,7 +130,7 @@ const FullProject = forwardRef((props, ref) => {
                     }} transition={{
                         ease: "easeInOut",
                         duration: 2,
-                    }} key={index} id="" className="flx flx-drc">
+                    }} key={index} id="" className={`flx flx-drc ${playingVideo && 'hidden'}`}>
                         <div>
                             <img src={`${API_URL}${folder.image.url}`} alt={folder.title}/>   
                             <h1>{folder.title}</h1> 

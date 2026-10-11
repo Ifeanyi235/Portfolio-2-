@@ -15,6 +15,7 @@
         -ms-overflow-style: none;  
         height:  75%;
         width: 100%;
+        min-width: 936px;
         z-index: 1;
         grid-template: auto / 100% 100%;
         grid-auto-flow: column; /* Force horizontal flow */
@@ -25,6 +26,7 @@
             grid-template: auto / repeat(5, 1fr);
             gap: 3rem;
             grid-auto-flow: column;
+            padding-right: 3rem;
            > div {
                 margin: 0.5rem 0rem 0.5rem 0rem;
                 display: flex;
@@ -159,6 +161,7 @@
                 >div {
                     grid-template: auto / repeat(4, 1fr);
                     gap: 2rem;
+                    padding-right: 2rem;
                     >div {
                         h1 {
                             font-size: 1.5rem;
