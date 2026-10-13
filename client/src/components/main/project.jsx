@@ -67,13 +67,9 @@ function CarouselItem({
     pausedRef.current = paused;
 
     useMotionValueEvent(x, "change", (latest) => {
-        if (latest >= windowWidth && !hasReached960.current) {
+        if (latest >= windowWidth && !hasReached960.current && !slim) {
             hasReached960.current = true;
             onFirstItemLeave();
-        }
-
-        if (latest < windowWidth) {
-            hasReached960.current = false;
         }
     });
 
