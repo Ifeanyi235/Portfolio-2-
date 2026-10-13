@@ -3,7 +3,9 @@ import {
     motion,
     animate,
     useMotionValue,
+    useMotionValueEvent,
     useReducedMotion,
+    useAnimate
 } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -59,9 +61,21 @@ function CarouselItem({
 
     const x = useMotionValue(row === "first" ? 0 : secondStart);
     const controlsRef = useRef(null);
+    const [scope, animate] = useAnimate();
     const pausedRef = useRef(paused);
+    const hasReached960 = useRef(false);
     pausedRef.current = paused;
 
+    useMotionValueEvent(x, "change", (latest) => {
+        if (latest >= windowWidth && !hasReached960.current) {
+            hasReached960.current = true;
+            onFirstItemLeave();
+        }
+
+        if (latest < windowWidth) {
+            hasReached960.current = false;
+        }
+    });
 
 
     useEffect(() => {
@@ -70,7 +84,7 @@ function CarouselItem({
         let keyframes;
         let options;
 
-        if (slim && !started) {
+        if (!started) {
             // Intro sweep: runs once.
             keyframes = [0, firstIntroEnd];
             options = { ease: "linear", duration: 15 }; 
@@ -99,7 +113,9 @@ function CarouselItem({
         firstLoopFrom,
         firstLoopTo,
         x,
-        slim
+        slim,
+        animate,
+        scope
     ]);
 
     useEffect(() => {
@@ -177,7 +193,7 @@ function CarouselItem1({
             duration: 30,
             repeat: Infinity,
             repeatType: "loop",
-            delay: !slim && 15
+            delay: 0
         };
         keyframes = [secondStart, 0];
         
@@ -309,7 +325,7 @@ const Project = forwardRef((props, ref) => {
                 setColumns(4);
             }
         }
-    }, []);
+    }, [windowHeight, windowWidth]);
 
     useEffect(() => {
         const container = elementRef.current;
@@ -360,9 +376,11 @@ const Project = forwardRef((props, ref) => {
         window.addEventListener("keydown", onKeyDown);
         return () => window.removeEventListener("keydown", onKeyDown);
     }, [playingVideo]);
+    const firstFolders = contents.slice(0, columns);
+    const secondFolders = contents.slice(0, columns);
 
-    const firstFolders = folders.slice(0, columns);
-    const secondFolders = folders.slice(0, columns);
+    // const firstFolders = folders.slice(0, columns);
+    // const secondFolders = folders.slice(0, columns);
 
     // Carousels also hold still while a video is playing.
     const paused = isHovered || Boolean(playingVideo);
