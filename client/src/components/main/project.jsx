@@ -67,7 +67,7 @@ function CarouselItem({
     pausedRef.current = paused;
 
     useMotionValueEvent(x, "change", (latest) => {
-        if (latest >= windowWidth && !hasReached960.current && !slim) {
+        if (latest >= windowWidth && !hasReached960.current) {
             hasReached960.current = true;
             onFirstItemLeave();
         }
@@ -126,10 +126,6 @@ function CarouselItem({
         <motion.div
             style={{ x }}
             viewport={{ once: false, margin: "0px -32.5px 0px 0px" }}
-            onViewportLeave={() => {
-                slim && isLeader && !started && onFirstItemLeave();
-                
-            }}
             id=""
             className="flx flx-drc container"
         >

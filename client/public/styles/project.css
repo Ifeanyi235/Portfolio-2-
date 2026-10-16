@@ -292,6 +292,37 @@
 }
 
 @media (max-height: 800px) {
+
+    @media (max-width: 480px) {
+        #project {
+            >div:nth-of-type(1) {
+                min-height: 400px;
+                >div {
+                    grid-template: auto / repeat(4, 1fr);
+                    >div {
+                        h1 {
+                            font-size: 1.2rem;
+                        }
+
+                        p {
+                            font-size: 0.9rem;
+                        }
+                        >div {
+                            >button {
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #video-player {
+                padding: 2rem 1rem;
+            }
+        }
+        
+    }
+
     @media (max-width: 376px) {
         #project {
             >div:nth-of-type(1) {

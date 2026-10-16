@@ -291,10 +291,6 @@
         
     }
 
-    @media (max-width: 412px) {
-        
-    }
-
     @media (max-width: 394px) {
         #contact {
             >div:nth-of-type(1) {
@@ -320,7 +316,7 @@
 }
 
 @media (max-height: 800px) {
-    @media (max-width: 376px) {
+    @media (max-width: 480px) {
         #contact {
             >div:nth-of-type(1) {
                 #quote {
