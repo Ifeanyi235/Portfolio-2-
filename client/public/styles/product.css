@@ -455,7 +455,7 @@
     }
 }
 
-@media (max-height: 800px) {
+@media (max-height: 850px) {
     @media (max-width: 430px) {
         #product {
             grid-template: auto / 1fr;

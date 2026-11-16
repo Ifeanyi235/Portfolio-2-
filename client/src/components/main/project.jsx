@@ -296,24 +296,27 @@ const Project = forwardRef((props, ref) => {
         setWindowWidth(width);
 
         if (windowHeight < 1401) {
-            if (windowWidth < 801) {
-                setColumns(3);
-                // console.log("windowWidth < 801");
-            } else if (windowWidth < 1001) {
+            if (windowWidth < 1024) {
                 setColumns(4);
+            } else if (windowWidth < 800) {
+                setColumns(3);
             }
-        }
+        } 
+        
         if (windowHeight < 1001) {
-            if (windowWidth < 499) {
-                setColumns(5);
-            } else if (windowWidth > 1199) {
+            if (windowWidth > 1199) {
                 setColumns(5);
             } else if (windowWidth > 499) {
                 setColumns(4);
+            } else if (windowWidth < 481) {
+                setColumns(5);
             }
         }
+
         if (windowHeight < 801) {
-            if (windowWidth < 367) {
+            if (windowWidth < 481) {
+                setColumns(4);
+            } else if (windowWidth < 377) {
                 setColumns(4);
             }
         }
@@ -368,11 +371,11 @@ const Project = forwardRef((props, ref) => {
         window.addEventListener("keydown", onKeyDown);
         return () => window.removeEventListener("keydown", onKeyDown);
     }, [playingVideo]);
-    const firstFolders = contents.slice(0, columns);
-    const secondFolders = contents.slice(0, columns);
+    // const firstFolders = contents.slice(0, columns);
+    // const secondFolders = contents.slice(0, columns);
 
-    // const firstFolders = folders.slice(0, columns);
-    // const secondFolders = folders.slice(0, columns);
+    const firstFolders = folders.slice(0, columns);
+    const secondFolders = folders.slice(0, columns);
 
     // Carousels also hold still while a video is playing.
     const paused = isHovered || Boolean(playingVideo);
